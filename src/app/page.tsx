@@ -1,4 +1,5 @@
 import Navbar from "@/components/layout/navbar";
+import HowItWorks from "@/components/work";
 
 export default function Home() {
   return (
@@ -110,6 +111,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <HowItWorks />
     </>
   );
 }
