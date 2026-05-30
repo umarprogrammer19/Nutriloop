@@ -1,11 +1,12 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 const steps = [
     {
         id: 1,
-        image: "/p1.png",
+        image: "/w1.png",
         title: "Input",
         description: "Add your organic kitchen waste.",
     },
@@ -64,19 +65,11 @@ export default function HowItWorks() {
             ref={sectionRef}
             className="relative w-full bg-[#080a06] overflow-hidden py-20 lg:py-28"
         >
-            {/* Subtle radial glow at center */}
-            <div
-                className="pointer-events-none absolute inset-0"
-                style={{
-                    background:
-                        "radial-gradient(ellipse 70% 50% at 50% 40%, rgba(0,201,80,0.055) 0%, transparent 70%)",
-                }}
-            />
 
             {/* Top divider line */}
-            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#00C950]/30 to-transparent" />
+            <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-[#00C950]/30 to-transparent" />
 
-            <div className="relative z-10 2xl:max-w-[1400px] w-[90%] mx-auto px-4">
+            <div className="relative z-10 2xl:max-w-360 w-[90%] mx-auto px-4">
 
                 {/* Header */}
                 <div
@@ -107,14 +100,14 @@ export default function HowItWorks() {
                 <div className="relative flex items-start justify-between gap-0">
 
                     {/* Connecting line — sits behind circles */}
-                    <div className="absolute left-0 right-0 top-[72px] flex items-center pointer-events-none z-0 px-[6%]">
-                        <div className="flex-1 h-px bg-gradient-to-r from-[#00C950]/20 via-[#00C950]/50 to-[#00C950]/20" />
+                    <div className="absolute left-0 right-0 top-18 flex items-center pointer-events-none z-0 px-[6%]">
+                        <div className="flex-1 h-px bg-linear-to-r from-[#00C950]/20 via-[#00C950]/50 to-[#00C950]/20" />
                     </div>
 
                     {steps.map((step, i) => (
                         <div
                             key={step.id}
-                            className="relative z-10 flex flex-col items-center flex-1"
+                            className="relative z-10 flex flex-col items-center"
                             style={{
                                 opacity: visible ? 1 : 0,
                                 transform: visible ? "translateY(0)" : "translateY(36px)",
@@ -123,16 +116,6 @@ export default function HowItWorks() {
                             onMouseEnter={() => setActiveStep(step.id)}
                             onMouseLeave={() => setActiveStep(null)}
                         >
-                            {/* Connector dots / arrows between images (except last) */}
-                            {i < steps.length - 1 && (
-                                <div
-                                    className="absolute right-0 top-[68px] translate-x-1/2 z-20 hidden lg:flex items-center"
-                                    style={{ pointerEvents: "none" }}
-                                >
-                                    <ArrowRight active={visible} delay={i * 0.1 + 0.3} />
-                                </div>
-                            )}
-
                             {/* Circle image */}
                             <div
                                 className="relative mb-5 cursor-pointer"
@@ -157,17 +140,19 @@ export default function HowItWorks() {
 
                                 {/* Dark ring border */}
                                 <div
-                                    className="relative w-[120px] h-[120px] md:w-[136px] md:h-[136px] lg:w-[148px] lg:h-[148px] rounded-full overflow-hidden"
+                                    className="relative w-30 h-30 md:w-34 md:h-34 lg:w-37 lg:h-37 rounded-full overflow-hidden bg-black flex justify-center items-center"
                                     style={{
                                         border: "2px solid rgba(0,201,80,0.18)",
                                         background: "rgba(10,14,8,0.85)",
                                     }}
                                 >
                                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                                    <img
+                                    <Image
                                         src={step.image}
                                         alt={step.title}
-                                        className="w-full h-full object-cover rounded-full"
+                                        height={500}
+                                        width={500}
+                                        className="w-32 h-32"
                                         style={{
                                             filter:
                                                 activeStep === step.id
@@ -191,7 +176,7 @@ export default function HowItWorks() {
                             {/* Step number + title */}
                             <div className="flex items-center gap-2 mb-2">
                                 <span
-                                    className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold text-black"
+                                    className="shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold text-black"
                                     style={{ background: "#00C950" }}
                                 >
                                     {step.id}
@@ -202,7 +187,7 @@ export default function HowItWorks() {
                             </div>
 
                             {/* Description */}
-                            <p className="text-gray-400 text-xs md:text-[13px] text-center leading-relaxed max-w-[130px]">
+                            <p className="text-gray-400 text-xs md:text-[13px] text-center leading-relaxed max-w-32.5">
                                 {step.description}
                             </p>
                         </div>
@@ -228,27 +213,6 @@ export default function HowItWorks() {
                         <span className="relative z-10 transition-colors duration-300 group-hover:text-[#00C950]">
                             Explore Full Process
                         </span>
-                        <span
-                            className="relative z-10 flex items-center justify-center w-6 h-6 rounded-full transition-all duration-300 group-hover:translate-x-0.5"
-                            style={{ background: "rgba(255,255,255,0.08)" }}
-                        >
-                            <svg
-                                width="12"
-                                height="12"
-                                viewBox="0 0 12 12"
-                                fill="none"
-                                className="transition-colors duration-300 group-hover:fill-[#00C950]"
-                            >
-                                <path
-                                    d="M2 6h8M7 3l3 3-3 3"
-                                    stroke="currentColor"
-                                    strokeWidth="1.5"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    className="transition-colors duration-300 group-hover:stroke-[#00C950]"
-                                />
-                            </svg>
-                        </span>
 
                         {/* hover shimmer */}
                         <span
@@ -263,7 +227,7 @@ export default function HowItWorks() {
             </div>
 
             {/* Bottom divider */}
-            <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#00C950]/20 to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-[#00C950]/20 to-transparent" />
         </section>
     );
 }
