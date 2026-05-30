@@ -5,12 +5,12 @@ export default function Navbar() {
     return (
         <header className="fixed top-0 left-0 z-50 w-full">
             <div className="max-w-7xl mx-auto px-6">
-                <div className="mt-4 flex items-center justify-between rounded-full border border-white/10 bg-black/30 backdrop-blur-xl px-6 py-4">
+                <div className="mt-4 flex items-center justify-between rounded-full border border-white/10 bg-black/30 backdrop-blur-xl px-6 py-1">
 
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-3">
                         <Image
-                            src="/logo.png"
+                            src="/nutriloop-logo.png"
                             alt="NutriLoop"
                             width={180}
                             height={40}
@@ -38,7 +38,7 @@ export default function Navbar() {
                     </nav>
 
                     {/* CTA */}
-                    <button className="hidden md:flex items-center rounded-full bg-green-500 px-6 py-3 text-black font-semibold hover:bg-green-400 transition">
+                    <button className="hidden md:flex items-center rounded-full bg-green-500 px-6 py-2 text-black font-semibold hover:bg-green-400 transition">
                         Get Started
                     </button>
                 </div>

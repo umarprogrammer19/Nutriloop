@@ -10,7 +10,7 @@ export default function Home() {
           relative
           min-h-screen
           bg-[url('/hero-bg.png')]
-          bg-cover
+          bg-contain
           bg-center
           bg-no-repeat
           overflow-hidden
@@ -44,11 +44,11 @@ export default function Home() {
               </p>
 
               <div className="mt-10 flex flex-wrap gap-4">
-                <button className="rounded-full bg-[#57A858] px-8 py-4 font-semibold text-black transition hover:bg-green-400">
+                <button className="rounded-xl bg-[#57A858] px-8 py-4 font-semibold text-black transition hover:bg-green-400">
                   Watch Demo
                 </button>
 
-                <button className="rounded-full border border-white/20 px-8 py-4 text-white transition hover:border-[#57A858] hover:text-green-400">
+                <button className="rounded-xl border border-white/20 px-8 py-4 text-white transition hover:border-[#57A858] hover:text-green-400">
                   Explore Technology
                 </button>
               </div>
