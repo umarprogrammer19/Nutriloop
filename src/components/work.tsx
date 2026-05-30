@@ -63,7 +63,7 @@ export default function HowItWorks() {
     return (
         <section
             ref={sectionRef}
-            className="relative w-full bg-[#080a06] overflow-hidden py-20 lg:py-28"
+            className="relative w-full bg-[#080a06] overflow-hidden py-12"
         >
 
             {/* Top divider line */}
@@ -73,7 +73,7 @@ export default function HowItWorks() {
 
                 {/* Header */}
                 <div
-                    className="text-center mb-16 lg:mb-20"
+                    className="text-center mb-16"
                     style={{
                         opacity: visible ? 1 : 0,
                         transform: visible ? "translateY(0)" : "translateY(28px)",
@@ -81,15 +81,15 @@ export default function HowItWorks() {
                     }}
                 >
                     <span
-                        className="inline-block text-[#00C950] text-xs font-semibold tracking-[0.25em] uppercase mb-4"
+                        className="inline-block text-[#00C950] text-md font-semibold tracking-[0.25em] uppercase mb-4"
                         style={{ letterSpacing: "0.22em" }}
                     >
                         HOW IT WORKS
                     </span>
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-5">
+                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-2">
                         From Waste to Worth
                     </h2>
-                    <p className="text-gray-400 text-base md:text-lg max-w-xl mx-auto leading-relaxed">
+                    <p className="text-white text-base md:text-lg max-w-xl mx-auto">
                         NutriLoop uses advanced mechatronics and AI to convert organic waste
                         <br className="hidden md:block" />
                         into a safe, dry, and nutrient-rich powder.
@@ -97,11 +97,11 @@ export default function HowItWorks() {
                 </div>
 
                 {/* Steps Row */}
-                <div className="relative flex items-start justify-between gap-0">
+                <div className="relative flex items-start justify-between">
 
                     {/* Connecting line — sits behind circles */}
                     <div className="absolute left-0 right-0 top-18 flex items-center pointer-events-none z-0 px-[6%]">
-                        <div className="flex-1 h-px bg-linear-to-r from-[#00C950]/20 via-[#00C950]/50 to-[#00C950]/20" />
+                        <div className="flex-1 h-0.5 bg-linear-to-r from-[#00C950]/20 via-[#00C950]/50 to-[#00C950]/20" />
                     </div>
 
                     {steps.map((step, i) => (
@@ -176,18 +176,18 @@ export default function HowItWorks() {
                             {/* Step number + title */}
                             <div className="flex items-center gap-2 mb-2">
                                 <span
-                                    className="shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold text-black"
+                                    className="shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-[12px] font-bold text-black"
                                     style={{ background: "#00C950" }}
                                 >
                                     {step.id}
                                 </span>
-                                <span className="text-white font-semibold text-sm md:text-[15px] whitespace-nowrap">
+                                <span className="text-white font-semibold text-sm md:text-[16px] whitespace-nowrap">
                                     {step.title}
                                 </span>
                             </div>
 
                             {/* Description */}
-                            <p className="text-gray-400 text-xs md:text-[13px] text-center leading-relaxed max-w-32.5">
+                            <p className="text-white/90 tracking-wide text-xs md:text-[13px] text-center max-w-36">
                                 {step.description}
                             </p>
                         </div>
@@ -196,7 +196,7 @@ export default function HowItWorks() {
 
                 {/* CTA Button */}
                 <div
-                    className="flex justify-center mt-14"
+                    className="flex justify-center mt-10"
                     style={{
                         opacity: visible ? 1 : 0,
                         transform: visible ? "translateY(0)" : "translateY(20px)",
@@ -204,7 +204,7 @@ export default function HowItWorks() {
                     }}
                 >
                     <button
-                        className="group relative flex items-center gap-3 border border-white/20 text-white text-sm font-medium px-7 py-3 rounded-full overflow-hidden transition-all duration-300 hover:border-[#00C950]/60"
+                        className="group relative flex items-center gap-3 border border-white/40 text-white text-sm font-medium px-7 py-3 rounded-lg overflow-hidden transition-all duration-300 hover:border-[#00C950]/60"
                         style={{
                             background: "rgba(255,255,255,0.03)",
                             backdropFilter: "blur(6px)",
@@ -229,42 +229,5 @@ export default function HowItWorks() {
             {/* Bottom divider */}
             <div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-[#00C950]/20 to-transparent" />
         </section>
-    );
-}
-
-/* Small animated arrow between steps */
-function ArrowRight({ active, delay }: { active: boolean; delay: number }) {
-    return (
-        <svg
-            width="28"
-            height="14"
-            viewBox="0 0 28 14"
-            fill="none"
-            style={{
-                opacity: active ? 1 : 0,
-                transition: `opacity 0.5s ease ${delay}s`,
-            }}
-        >
-            {/* Line */}
-            <line
-                x1="0"
-                y1="7"
-                x2="20"
-                y2="7"
-                stroke="#00C950"
-                strokeWidth="1.5"
-                strokeDasharray="4 3"
-                opacity="0.7"
-            />
-            {/* Arrowhead */}
-            <path
-                d="M18 3.5L24 7L18 10.5"
-                stroke="#00C950"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                opacity="0.85"
-            />
-        </svg>
     );
 }
