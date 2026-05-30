@@ -1,9 +1,9 @@
-// import Navbar from "@/components/Navbar";
+import Navbar from "@/components/layout/navbar";
 
 export default function Home() {
   return (
     <>
-      {/* <Navbar /> */}
+      <Navbar />
 
       <section
         className="
