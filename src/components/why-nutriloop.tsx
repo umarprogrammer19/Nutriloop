@@ -150,7 +150,7 @@ export default function WhyNutriLoop() {
                             {/* Video */}
                             <video
                                 ref={videoRef}
-                                className="absolute inset-0 w-full h-full object-cover z-10"
+                                className="absolute inset-0 w-full h-full object-fill z-10"
                                 // poster="/why-bg.png"
                                 muted
                                 loop
