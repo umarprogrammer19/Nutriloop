@@ -162,7 +162,7 @@ export default function Footer() {
                     style={{ background: "radial-gradient(ellipse, rgba(0,201,80,0.06) 0%, transparent 70%)", animation: "glowBreath 6s ease-in-out infinite" }} />
 
                 {/* Main footer content */}
-                <div className="relative z-10 2xl:max-w-350 w-[90%] mx-auto px-0 sm:px-4 pt-12 pb-8 lg:pt-16 lg:pb-10">
+                <div className="relative z-10 2xl:max-w-350 w-[90%] mx-auto px-0 sm:px-4 pt-8 pb-6">
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8">
 
                         {/* ── Brand column ── */}
