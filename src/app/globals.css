@@ -34,7 +34,7 @@ button {
 }
 
 * {
-  scrollbar-width: none;
+  scrollbar-width: 2px;
 }
 
 html {
