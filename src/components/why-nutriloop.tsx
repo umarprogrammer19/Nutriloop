@@ -136,7 +136,6 @@ export default function WhyNutriLoop() {
             <section
                 ref={sectionRef}
                 className="relative bg-[#070a05] py-18 overflow-hidden bg-[url('/why-bg.png')] bg-cover bg-center bg-no-repeat"
-                style={{ fontFamily: "'DM Sans', sans-serif" }}
             >
                 {/* Top hairline */}
                 <div className="absolute top-0 inset-x-0 h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(0,201,80,0.3), transparent)" }} />
@@ -145,122 +144,64 @@ export default function WhyNutriLoop() {
                     <div className="grid lg:grid-cols-2 gap-6 items-stretch">
 
                         {/* ── LEFT: Video card ── */}
-                        <div
-                            className={`why-card-left relative rounded-2xl overflow-hidden group ${mounted ? "opacity-100" : "opacity-0"}`}
-                            style={{
-                                border: "1px solid rgba(255,255,255,0.07)",
-                                background: "rgba(255,255,255,0.02)",
-                                minHeight: 420,
-                            }}
-                        >
-                            {/* Video container */}
-                            <div className="relative w-full h-full min-h-95 bg-black">
-                                {/* Video element */}
-                                <video
-                                    ref={videoRef}
-                                    className="absolute inset-0 w-full h-full object-cover"
-                                    poster="/why-bg.png"
-                                    muted
-                                    loop
-                                    playsInline
-                                    preload="metadata"
-                                >
-                                    <source src="/nutriloop.mp4" type="video/mp4" />
-                                    Your browser does not support the video tag.
-                                </video>
+                        <div className="relative w-full h-full min-h-95">
 
-                                {/* Fallback dark gradient (visible if video fails) */}
-                                <div
-                                    className="absolute inset-0"
-                                    style={{
-                                        background: "linear-gradient(135deg, #0d1a0d 0%, #0a1a10 40%, #071208 100%)",
-                                    }}
-                                />
+                            {/* Fallback background */}
+                            {/* <div
+                                className="absolute inset-0 z-0"
+                                style={{
+                                    background:
+                                        "linear-gradient(135deg, #0d1a0d 0%, #0a1a10 40%, #071208 100%)",
+                                }}
+                            /> */}
 
-                                {/* Subtle dark overlay for readability */}
-                                <div
-                                    className="absolute inset-0 transition-opacity duration-300"
-                                    style={{
-                                        background: "linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.15) 60%, transparent 100%)",
-                                        opacity: playing ? 0.3 : 0.65,
-                                    }}
-                                />
+                            {/* Video */}
+                            <video
+                                ref={videoRef}
+                                className="absolute inset-0 w-full h-full object-cover z-10"
+                                // poster="/why-bg.png"
+                                muted
+                                loop
+                                playsInline
+                                preload="auto"
+                            >
+                                <source src="/nutriloop.mp4" type="video/mp4" />
+                                Your browser does not support the video tag.
+                            </video>
 
-                                {/* Horizontal scan shimmer - only when paused */}
-                                {!playing && (
-                                    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                                        <div
-                                            className="absolute top-0 bottom-0 w-32"
-                                            style={{
-                                                background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.04), transparent)",
-                                                animation: "scanH 3.5s ease-in-out infinite",
-                                            }}
-                                        />
-                                    </div>
-                                )}
-
-                                {/* Play/Pause button — centered (only show when not playing) */}
-                                {!playing && (
-                                    <div className="absolute inset-0 flex items-center justify-center">
-                                        <button
-                                            className="play-btn relative z-10 flex items-center justify-center w-16 h-16 rounded-full"
-                                            style={{
-                                                background: "rgba(0,201,80,0.9)",
-                                                boxShadow: "0 0 0 8px rgba(0,201,80,0.18), 0 0 24px rgba(0,201,80,0.3)",
-                                            }}
-                                            onClick={() => setPlaying(true)}
-                                            aria-label="Play video"
-                                        >
-                                            {/* Ripple rings */}
-                                            {[0, 1].map((i) => (
-                                                <span
-                                                    key={i}
-                                                    className="absolute inset-0 rounded-full border border-[#00C950]/50"
-                                                    style={{
-                                                        animation: `ripple 2s ease-out ${i * 0.8}s infinite`,
-                                                    }}
-                                                />
-                                            ))}
-
-                                            {/* Triangle */}
-                                            <svg width="22" height="22" viewBox="0 0 24 24" fill="black">
-                                                <polygon points="6,4 20,12 6,20" />
-                                            </svg>
-                                        </button>
-                                    </div>
-                                )}
-
-                                {/* Pause button - top right when playing */}
-                                {playing && (
-                                    <button
-                                        className="absolute top-4 right-4 z-20 flex items-center justify-center w-12 h-12 rounded-full bg-black/60 hover:bg-black/80 transition-all"
-                                        onClick={() => setPlaying(false)}
-                                        aria-label="Pause video"
+                            {/* Scan effect */}
+                            {!playing && (
+                                <div className="absolute inset-0 overflow-hidden pointer-events-none z-30">
+                                    <div
+                                        className="absolute top-0 bottom-0 w-32"
                                         style={{
-                                            backdropFilter: "blur(6px)",
-                                            border: "1px solid rgba(0,201,80,0.4)",
+                                            background:
+                                                "linear-gradient(90deg, transparent, rgba(255,255,255,0.04), transparent)",
+                                            animation: "scanH 3.5s ease-in-out infinite",
                                         }}
+                                    />
+                                </div>
+                            )}
+
+                            {/* Play Button */}
+                            {!playing && (
+                                <div className="absolute inset-0 flex items-center justify-center z-40">
+                                    <button
+                                        className="play-btn relative flex items-center justify-center w-16 h-16 rounded-full"
+                                        style={{
+                                            background: "rgba(0,201,80,0.9)",
+                                            boxShadow:
+                                                "0 0 0 8px rgba(0,201,80,0.18), 0 0 24px rgba(0,201,80,0.3)",
+                                        }}
+                                        onClick={() => setPlaying(true)}
                                     >
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
-                                            <rect x="6" y="4" width="4" height="16" />
-                                            <rect x="14" y="4" width="4" height="16" />
+                                        <svg width="22" height="22" viewBox="0 0 24 24" fill="black">
+                                            <polygon points="6,4 20,12 6,20" />
                                         </svg>
                                     </button>
-                                )}
-
-                                {/* Bottom caption */}
-                                <div className="absolute bottom-0 left-0 right-0 p-6">
-                                    <h3
-                                        className="text-white text-xl font-semibold mb-1"
-                                        style={{ fontFamily: "'Syne', sans-serif" }}
-                                    >
-                                        See NutriLoop in Action
-                                    </h3>
-                                    <p className="text-gray-400 text-sm">
-                                        Watch how NutriLoop transforms waste into value.
-                                    </p>
                                 </div>
-                            </div>
+                            )}
+
                         </div>
 
                         {/* ── RIGHT: Features card ── */}
@@ -277,17 +218,16 @@ export default function WhyNutriLoop() {
 
                             {/* Label */}
                             <p
-                                className="text-[#00C950] text-xs font-semibold tracking-[0.22em] uppercase mb-4"
-                                style={{ fontFamily: "'Syne', sans-serif" }}
+                                className="text-[#00C950] text-sm font-semibold tracking-wide uppercase mb-4"
+                                style={{ fontFamily: "sans-serif" }}
                             >
                                 WHY NUTRILOOP?
                             </p>
 
                             {/* Heading */}
                             <h2
-                                className="text-white font-bold leading-tight mb-8"
+                                className="text-white font-semibold tracking-wide leading-tight mb-8"
                                 style={{
-                                    fontFamily: "'Syne', sans-serif",
                                     fontSize: "clamp(1.9rem, 3.5vw, 2.75rem)",
                                     letterSpacing: "-0.02em",
                                 }}
@@ -318,12 +258,11 @@ export default function WhyNutriLoop() {
                                         {/* Text */}
                                         <div>
                                             <h4
-                                                className="text-white font-semibold text-[15px] mb-0.5"
-                                                style={{ fontFamily: "'Syne', sans-serif" }}
+                                                className="text-white tracking-wide font-semibold text-[15px] mb-0.5"
                                             >
                                                 {f.label}
                                             </h4>
-                                            <p className="text-gray-400 text-sm leading-relaxed">
+                                            <p className="text-white/90 tracking-wide text-sm leading-relaxed">
                                                 {f.desc}
                                             </p>
                                         </div>
@@ -337,7 +276,7 @@ export default function WhyNutriLoop() {
 
                             {/* Bottom separator + CTA */}
                             <div className="mt-9 pt-7 border-t border-white/5 flex items-center justify-between gap-4">
-                                <p className="text-gray-500 text-xs max-w-50 leading-relaxed">
+                                <p className="text-gray-300 tracking-wide text-xs max-w-50 leading-relaxed">
                                     Engineered for daily sustainability without compromise.
                                 </p>
                                 <button
