@@ -110,7 +110,7 @@ export default function Hero() {
 
                             <motion.div whileHover={{ y: -4, scale: 1.03 }}>
                                 <h3 className="text-2xl font-bold text-[#00C950]">
-                                    2–4h
+                                    40–80m
                                 </h3>
                                 <p className="text-sm text-gray-400">
                                     Processing

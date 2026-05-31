@@ -13,7 +13,7 @@ const faqs = [
     },
     {
         q: "How long does the processing take?",
-        a: "A standard cycle takes between 2 to 4 hours depending on the type and quantity of waste loaded. Smart sensors automatically optimize the duration for best results.",
+        a: "A standard cycle takes between 40 to 80mins hours depending on the type and quantity of waste loaded. Smart sensors automatically optimize the duration for best results.",
     },
     {
         q: "Can the powder be reused?",
