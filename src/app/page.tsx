@@ -1,3 +1,4 @@
+import FAQ from "@/components/faqs";
 import Hero from "@/components/hero";
 import ImpactAndTestimonials from "@/components/impact-and-testimonials";
 import Footer from "@/components/layout/footer";
@@ -13,6 +14,7 @@ export default function Home() {
       <HowItWorks />
       <WhyNutriLoop />
       <ImpactAndTestimonials />
+      <FAQ />
       <Footer />
     </>
   );
