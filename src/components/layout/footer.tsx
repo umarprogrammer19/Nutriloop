@@ -153,7 +153,7 @@ export default function Footer() {
                     style={{ background: "linear-gradient(90deg,transparent,rgba(0,201,80,0.35),transparent)" }} />
 
                 {/* Ambient glow */}
-                <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[600px] h-50"
+                <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-150 h-50"
                     style={{ background: "radial-gradient(ellipse, rgba(0,201,80,0.06) 0%, transparent 70%)", animation: "glowBreath 6s ease-in-out infinite" }} />
 
                 {/* Main footer content */}
