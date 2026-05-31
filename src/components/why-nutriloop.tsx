@@ -125,9 +125,9 @@ export default function WhyNutriLoop() {
                 style={{ fontFamily: "'DM Sans', sans-serif" }}
             >
                 {/* Ambient glows */}
-                <div className="pointer-events-none absolute -left-32 top-1/2 -translate-y-1/2 w-[420px] h-[420px] rounded-full"
+                <div className="pointer-events-none absolute -left-32 top-1/2 -translate-y-1/2 w-105 h-105 rounded-full"
                     style={{ background: "radial-gradient(circle, rgba(0,201,80,0.08) 0%, transparent 70%)", animation: "glowBreath 6s ease-in-out infinite" }} />
-                <div className="pointer-events-none absolute -right-24 bottom-10 w-[320px] h-[320px] rounded-full"
+                <div className="pointer-events-none absolute -right-24 bottom-10 w-[320px] h-80 rounded-full"
                     style={{ background: "radial-gradient(circle, rgba(0,201,80,0.06) 0%, transparent 70%)", animation: "glowBreath 8s ease-in-out infinite reverse" }} />
 
                 {/* Decorative leaves */}
@@ -147,7 +147,7 @@ export default function WhyNutriLoop() {
                 {/* Top hairline */}
                 <div className="absolute top-0 inset-x-0 h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(0,201,80,0.3), transparent)" }} />
 
-                <div className="relative z-10 2xl:max-w-[1400px] w-[90%] mx-auto px-4">
+                <div className="relative z-10 2xl:max-w-360 w-[90%] mx-auto px-4">
                     <div className="grid lg:grid-cols-2 gap-6 items-stretch">
 
                         {/* ── LEFT: Video card ── */}
@@ -160,7 +160,7 @@ export default function WhyNutriLoop() {
                             }}
                         >
                             {/* Thumbnail image */}
-                            <div className="relative w-full h-full min-h-[380px]">
+                            <div className="relative w-full h-full min-h-95">
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
                                 <img
                                     src="/why-bg.png"
@@ -281,7 +281,7 @@ export default function WhyNutriLoop() {
                                     >
                                         {/* Icon box */}
                                         <div
-                                            className="feat-icon-wrap flex-shrink-0 flex items-center justify-center w-11 h-11 rounded-xl text-[#00C950] transition-all duration-300"
+                                            className="feat-icon-wrap shrink-0 flex items-center justify-center w-11 h-11 rounded-xl text-[#00C950] transition-all duration-300"
                                             style={{
                                                 background: "rgba(0,201,80,0.07)",
                                                 border: "1px solid rgba(0,201,80,0.2)",
@@ -304,7 +304,7 @@ export default function WhyNutriLoop() {
                                         </div>
 
                                         {/* Subtle right accent */}
-                                        <div className="ml-auto flex-shrink-0 w-1 self-stretch rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                                        <div className="ml-auto shrink-0 w-1 self-stretch rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
                                             style={{ background: "linear-gradient(to bottom, #00C950, transparent)" }} />
                                     </div>
                                 ))}
@@ -312,11 +312,11 @@ export default function WhyNutriLoop() {
 
                             {/* Bottom separator + CTA */}
                             <div className="mt-9 pt-7 border-t border-white/5 flex items-center justify-between gap-4">
-                                <p className="text-gray-500 text-xs max-w-[200px] leading-relaxed">
+                                <p className="text-gray-500 text-xs max-w-50 leading-relaxed">
                                     Engineered for daily sustainability without compromise.
                                 </p>
                                 <button
-                                    className="flex-shrink-0 flex items-center gap-2 text-[#00C950] text-sm font-medium transition-all duration-300 hover:gap-3"
+                                    className="shrink-0 flex items-center gap-2 text-[#00C950] text-sm font-medium transition-all duration-300 hover:gap-3"
                                     style={{ fontFamily: "'Syne', sans-serif" }}
                                 >
                                     Learn more
