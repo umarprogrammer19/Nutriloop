@@ -69,10 +69,6 @@ export default function Footer() {
           0%,100% { opacity:.4; }
           50%      { opacity:.75; }
         }
-        @keyframes logoSpin {
-          from { transform:rotate(0deg); }
-          to   { transform:rotate(360deg); }
-        }
         @keyframes fadeUp {
           from { opacity:0; transform:translateY(10px); }
           to   { opacity:1; transform:translateY(0); }
@@ -136,6 +132,10 @@ export default function Footer() {
           font-family:'Syne',sans-serif;
           position:relative;
           overflow:hidden;
+          width: 100%;
+        }
+        @media (min-width: 640px) {
+            .subscribe-btn { width: auto; }
         }
         .subscribe-btn:hover {
           background:#22d45e;
@@ -153,15 +153,15 @@ export default function Footer() {
                     style={{ background: "linear-gradient(90deg,transparent,rgba(0,201,80,0.35),transparent)" }} />
 
                 {/* Ambient glow */}
-                <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-150 h-50"
+                <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[600px] h-50"
                     style={{ background: "radial-gradient(ellipse, rgba(0,201,80,0.06) 0%, transparent 70%)", animation: "glowBreath 6s ease-in-out infinite" }} />
 
                 {/* Main footer content */}
-                <div className="relative z-10 2xl:max-w-350 w-[90%] mx-auto px-4 pt-14 pb-10">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10 lg:gap-8">
+                <div className="relative z-10 2xl:max-w-350 w-[90%] mx-auto px-0 sm:px-4 pt-12 pb-8 lg:pt-16 lg:pb-10">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8">
 
                         {/* ── Brand column ── */}
-                        <div className="lg:col-span-2 flex flex-col gap-5">
+                        <div className="sm:col-span-2 lg:col-span-4 flex flex-col gap-4 sm:gap-5">
                             {/* Logo */}
                             <Link href="/" className="flex gap-3">
                                 <Image
@@ -170,16 +170,16 @@ export default function Footer() {
                                     width={180}
                                     height={40}
                                     priority
-                                    className="w-52"
+                                    className="w-44 sm:w-52"
                                 />
                             </Link>
 
-                            <p className="text-gray-100 text-sm max-w-60">
+                            <p className="text-gray-100 text-sm max-w-sm lg:max-w-60 leading-relaxed">
                                 AI-powered ecosystem that transforms organic waste into value for a greener, healthier future.
                             </p>
 
                             {/* Social icons */}
-                            <div className="flex items-center gap-2.5 mt-1">
+                            <div className="flex items-center gap-2.5 mt-2 lg:mt-1">
                                 {socials.map((s) => (
                                     <a key={s.label} href={s.href} className="social-btn" aria-label={s.label}>
                                         {s.icon}
@@ -188,51 +188,56 @@ export default function Footer() {
                             </div>
                         </div>
 
-                        {/* ── Quick Links ── */}
-                        <div>
-                            <h4 className="text-white font-semibold text-sm mb-5 tracking-wide" style={{ fontFamily: "'Syne',sans-serif" }}>
-                                Quick Links
-                            </h4>
-                            <ul className="flex flex-col gap-1">
-                                {quickLinks.map((l) => (
-                                    <li key={l}>
-                                        <a href="#" className="footer-link">{l}</a>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
+                        {/* ── Link Columns Wrapper ── */}
+                        {/* 2 cols on mobile, 3 on desktop */}
+                        <div className="sm:col-span-1 lg:col-span-5 grid grid-cols-2 lg:grid-cols-3 gap-8">
 
-                        {/* ── Resources ── */}
-                        <div>
-                            <h4 className="text-white font-semibold text-sm mb-5 tracking-wide" style={{ fontFamily: "'Syne',sans-serif" }}>
-                                Resources
-                            </h4>
-                            <ul className="flex flex-col gap-1">
-                                {resources.map((l) => (
-                                    <li key={l}>
-                                        <a href="#" className="footer-link">{l}</a>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
+                            {/* ── Quick Links ── */}
+                            <div>
+                                <h4 className="text-white font-semibold text-sm mb-4 sm:mb-5 tracking-wide" style={{ fontFamily: "'Syne',sans-serif" }}>
+                                    Quick Links
+                                </h4>
+                                <ul className="flex flex-col gap-2 sm:gap-1">
+                                    {quickLinks.map((l) => (
+                                        <li key={l}>
+                                            <a href="#" className="footer-link">{l}</a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
 
-                        {/* ── Legal ── */}
-                        <div>
-                            <h4 className="text-white font-semibold text-sm mb-5 tracking-wide" style={{ fontFamily: "'Syne',sans-serif" }}>
-                                Legal
-                            </h4>
-                            <ul className="flex flex-col gap-1">
-                                {legal.map((l) => (
-                                    <li key={l}>
-                                        <a href="#" className="footer-link">{l}</a>
-                                    </li>
-                                ))}
-                            </ul>
+                            {/* ── Resources ── */}
+                            <div>
+                                <h4 className="text-white font-semibold text-sm mb-4 sm:mb-5 tracking-wide" style={{ fontFamily: "'Syne',sans-serif" }}>
+                                    Resources
+                                </h4>
+                                <ul className="flex flex-col gap-2 sm:gap-1">
+                                    {resources.map((l) => (
+                                        <li key={l}>
+                                            <a href="#" className="footer-link">{l}</a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+
+                            {/* ── Legal ── */}
+                            <div className="col-span-2 lg:col-span-1">
+                                <h4 className="text-white font-semibold text-sm mb-4 sm:mb-5 tracking-wide" style={{ fontFamily: "'Syne',sans-serif" }}>
+                                    Legal
+                                </h4>
+                                <ul className="flex flex-col sm:flex-row lg:flex-col gap-3 sm:gap-6 lg:gap-1">
+                                    {legal.map((l) => (
+                                        <li key={l}>
+                                            <a href="#" className="footer-link">{l}</a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
                         </div>
 
                         {/* ── Newsletter ── */}
-                        <div>
-                            <h4 className="text-white font-semibold text-sm mb-5 tracking-wide" style={{ fontFamily: "'Syne',sans-serif" }}>
+                        <div className="sm:col-span-1 lg:col-span-3">
+                            <h4 className="text-white font-semibold text-sm mb-3 sm:mb-5 tracking-wide" style={{ fontFamily: "'Syne',sans-serif" }}>
                                 Stay Updated
                             </h4>
                             <p className="text-gray-100 text-xs mb-4">
@@ -247,7 +252,7 @@ export default function Footer() {
                                     You're subscribed!
                                 </div>
                             ) : (
-                                <form onSubmit={handleSubscribe} className="flex flex-col gap-2.5">
+                                <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row lg:flex-col gap-2.5">
                                     <input
                                         type="email"
                                         className="subscribe-input"
@@ -256,7 +261,7 @@ export default function Footer() {
                                         onChange={(e) => setEmail(e.target.value)}
                                         required
                                     />
-                                    <button type="submit" className="subscribe-btn">
+                                    <button type="submit" className="subscribe-btn shrink-0">
                                         Subscribe →
                                     </button>
                                 </form>
@@ -265,16 +270,16 @@ export default function Footer() {
                     </div>
 
                     {/* ── Divider ── */}
-                    <div className="mt-12 mb-7 h-px w-full"
+                    <div className="mt-10 sm:mt-12 mb-6 sm:mb-7 h-px w-full"
                         style={{ background: "linear-gradient(90deg,transparent,rgba(255,255,255,0.06),transparent)" }} />
 
                     {/* ── Bottom bar ── */}
-                    <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-                        <p className="text-gray-600 text-xs">
-                            © 2025 NutriLoop. All rights reserved.
+                    <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-4 text-center md:text-left">
+                        <p className="text-gray-500 text-xs">
+                            © {new Date().getFullYear()} NutriLoop. All rights reserved.
                         </p>
 
-                        <div className="flex items-center gap-1.5 text-xs text-gray-600">
+                        <div className="flex items-center justify-center gap-1.5 text-xs text-gray-400">
                             Designed with
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="rgba(0,201,80,0.7)" style={{ margin: "0 1px" }}>
                                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
