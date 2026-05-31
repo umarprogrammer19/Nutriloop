@@ -21,7 +21,7 @@ function useCounter(target: number, duration = 1800, start = false) {
 const stats = [
     {
         icon: (
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M3 6h18M3 12h18M3 18h18" /><rect x="3" y="3" width="18" height="18" rx="2" />
                 <path d="M8 9l2 2 4-4" />
             </svg>
@@ -30,7 +30,7 @@ const stats = [
     },
     {
         icon: (
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" />
                 <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
             </svg>
@@ -39,7 +39,7 @@ const stats = [
     },
     {
         icon: (
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M12 2a10 10 0 0 1 0 20" /><path d="M12 6c1.5 1.5 2 3 2 6s-.5 4.5-2 6" />
                 <path d="M2 12h20" /><path d="M6 8c1 .5 2.5.5 6 .5s5-.5 6-.5" />
             </svg>
@@ -49,7 +49,7 @@ const stats = [
     },
     {
         icon: (
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M7 20s-4-1-4-8c0-4 3-7 7-7 1 0 2 .5 3 1" />
                 <path d="M17 4s4 1 4 8c0 4-3 7-7 7-1 0-2-.5-3-1" />
                 <line x1="12" y1="3" x2="12" y2="21" />
@@ -105,6 +105,14 @@ export default function ImpactAndTestimonials() {
         return () => obs.disconnect();
     }, []);
 
+    // Optional Auto-play for the carousel on mobile/desktop
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setActiveTestimonial((prev) => (prev + 1) % testimonials.length);
+        }, 5000);
+        return () => clearInterval(interval);
+    }, []);
+
     return (
         <>
             <style>{`
@@ -131,17 +139,9 @@ export default function ImpactAndTestimonials() {
           from { transform:translateX(0); }
           to   { transform:translateX(-50%); }
         }
-        @keyframes cardHover {
-          from { transform:translateY(0) scale(1); }
-          to   { transform:translateY(-6px) scale(1.01); }
-        }
         @keyframes shimmerDiag {
           0%   { background-position:-200% -200%; }
           100% { background-position: 200%  200%; }
-        }
-        @keyframes quoteReveal {
-          from { clip-path:inset(0 100% 0 0); opacity:0; }
-          to   { clip-path:inset(0 0% 0 0);   opacity:1; }
         }
 
         .stat-card {
@@ -161,15 +161,21 @@ export default function ImpactAndTestimonials() {
           transition:all .4s cubic-bezier(.22,1,.36,1);
           cursor:pointer;
         }
+        
+        /* Active State Styles */
         .tcard.active {
           border-color:rgba(0,201,80,0.5) !important;
           background:rgba(0,201,80,0.05) !important;
           box-shadow:0 0 0 1px rgba(0,201,80,0.3), 0 16px 48px rgba(0,0,0,.5) !important;
           transform:scale(1.02);
         }
-        .tcard:not(.active):hover {
-          border-color:rgba(0,201,80,0.2) !important;
-          transform:scale(1.01);
+        
+        /* Hover Effect for Desktop Only */
+        @media (min-width: 1024px) {
+            .tcard:not(.active):hover {
+              border-color:rgba(0,201,80,0.2) !important;
+              transform:scale(1.01);
+            }
         }
 
         .impact-leaf { animation: leafFloat 7s ease-in-out infinite; }
@@ -190,7 +196,7 @@ export default function ImpactAndTestimonials() {
                 style={{ fontFamily: "'DM Sans', sans-serif" }}
             >
                 {/* PART 1 — OUR IMPACT */}
-                <div className="relative py-12">
+                <div className="relative py-12 sm:py-16">
                     {/* Leaves decoration */}
                     <div className="impact-leaf pointer-events-none absolute top-6 left-4 opacity-60 hidden lg:block">
                         <svg width="70" height="140" viewBox="0 0 70 140" fill="none">
@@ -217,30 +223,30 @@ export default function ImpactAndTestimonials() {
 
                     {/* Ambient glow center */}
                     <div className="pointer-events-none absolute inset-0 flex items-start justify-center pt-10">
-                        <div className="w-150 h-75 rounded-full opacity-25"
+                        <div className="w-96 sm:w-150 h-50 sm:h-75 rounded-full opacity-25"
                             style={{ background: "radial-gradient(ellipse, rgba(0,201,80,0.3) 0%, transparent 70%)", animation: "glowPulse 5s ease-in-out infinite" }} />
                     </div>
 
-                    <div className="relative z-10 2xl:max-w-350 w-[90%] mx-auto px-4">
+                    <div className="relative z-10 2xl:max-w-350 w-[90%] mx-auto px-2 sm:px-4">
                         {/* Header */}
-                        <div className="text-center mb-8"
+                        <div className="text-center mb-10 lg:mb-12"
                             style={{ opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(20px)", transition: "opacity .7s ease, transform .7s ease" }}>
-                            <span className="text-[#00C950] text-sm font-semibold tracking-widest uppercase">
+                            <span className="text-[#00C950] text-xs sm:text-sm font-semibold tracking-widest uppercase">
                                 OUR IMPACT
                             </span>
                             <h2 className="mt-3 text-white font-bold leading-tight"
-                                style={{ fontFamily: "'Poppins',sans-serif", fontSize: "clamp(2rem,4vw,3.2rem)" }}>
+                                style={{ fontFamily: "'Poppins',sans-serif", fontSize: "clamp(2rem, 4vw, 3.2rem)" }}>
                                 Building a Better Tomorrow
                             </h2>
-                            <p className="mt-2 text-gray-200 text-base">Every cycle you run makes a real difference.</p>
+                            <p className="mt-2 text-gray-200 text-sm sm:text-base">Every cycle you run makes a real difference.</p>
                         </div>
 
                         {/* Stat cards */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
                             {stats.map((s, i) => (
                                 <div
                                     key={i}
-                                    className={`stat-card ${inView ? "visible" : ""} relative rounded-2xl p-6 flex gap-4`}
+                                    className={`stat-card ${inView ? "visible" : ""} relative rounded-2xl p-5 sm:p-6 flex gap-4`}
                                     style={{
                                         border: "1px solid rgba(255,255,255,0.07)",
                                         background: "rgba(14,18,12,0.9)",
@@ -249,7 +255,7 @@ export default function ImpactAndTestimonials() {
                                 >
                                     {/* Icon */}
                                     <div className="shrink-0 flex items-start pt-1">
-                                        <div className="w-12 h-12 rounded-xl flex items-center justify-center text-[#00C950]"
+                                        <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center text-[#00C950]"
                                             style={{ background: "rgba(0,201,80,0.08)", border: "1px solid rgba(0,201,80,0.2)" }}>
                                             {s.icon}
                                         </div>
@@ -258,7 +264,7 @@ export default function ImpactAndTestimonials() {
                                     {/* Text */}
                                     <div>
                                         <p className="text-[#00C950] font-bold leading-none"
-                                            style={{ fontFamily: "'Poppins',sans-serif", fontSize: "clamp(1.6rem,3vw,2rem)", textShadow: "0 0 20px rgba(0,201,80,0.4)" }}>
+                                            style={{ fontFamily: "'Poppins',sans-serif", fontSize: "clamp(1.5rem, 3vw, 2rem)", textShadow: "0 0 20px rgba(0,201,80,0.4)" }}>
                                             {s.displayValue
                                                 ? s.displayValue
                                                 : i === 0 ? v125
@@ -267,14 +273,14 @@ export default function ImpactAndTestimonials() {
                                                             : s.value}
                                             {s.suffix}
                                         </p>
-                                        <p className="text-white tracking-wide font-semibold text-sm mt-1" style={{ fontFamily: "'Poppins',sans-serif" }}>
+                                        <p className="text-white tracking-wide font-semibold text-xs sm:text-sm mt-1 sm:mt-1.5" style={{ fontFamily: "'Poppins',sans-serif" }}>
                                             {s.label}
                                         </p>
-                                        <p className="text-gray-200 text-xs mt-1 leading-snug">{s.sub}</p>
+                                        <p className="text-gray-200 text-[11px] sm:text-xs mt-1 leading-snug">{s.sub}</p>
                                     </div>
 
                                     {/* Corner glow */}
-                                    <div className="absolute top-0 right-0 w-20 h-20 pointer-events-none rounded-2xl"
+                                    <div className="absolute top-0 right-0 w-16 h-16 sm:w-20 sm:h-20 pointer-events-none rounded-2xl"
                                         style={{ background: "radial-gradient(circle at top right, rgba(0,201,80,0.07) 0%, transparent 70%)" }} />
                                 </div>
                             ))}
@@ -286,8 +292,8 @@ export default function ImpactAndTestimonials() {
                         style={{ background: "linear-gradient(90deg,transparent,rgba(0,201,80,0.2),transparent)" }} />
                 </div>
 
-                {/* PART 2 — TESTIMONIALS (Creative version) */}
-                <div className="relative py-12">
+                {/* PART 2 — TESTIMONIALS */}
+                <div className="relative py-12 sm:py-16">
                     {/* Background texture lines */}
                     <div
                         className="pointer-events-none absolute inset-0 opacity-[0.04]"
@@ -311,19 +317,19 @@ export default function ImpactAndTestimonials() {
                     />
 
                     {/* Ambient glow */}
-                    <div className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 w-175 h-87.5"
+                    <div className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 w-[120%] sm:w-175 h-64 sm:h-87.5"
                         style={{ background: "radial-gradient(ellipse, rgba(0,201,80,0.07) 0%, transparent 70%)", animation: "glowPulse 7s ease-in-out infinite" }} />
 
-                    <div className="relative z-10 2xl:max-w-360 w-[90%] mx-auto px-4">
+                    <div className="relative z-10 2xl:max-w-360 w-[90%] mx-auto px-2 sm:px-4">
 
                         {/* Header */}
-                        <div className="text-center mb-8"
+                        <div className="text-center mb-8 sm:mb-10"
                             style={{ opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(20px)", transition: "opacity .7s ease .3s, transform .7s ease .3s" }}>
-                            <span className="text-[#00C950] text-sm font-semibold tracking-widest uppercase" style={{ fontFamily: "'Poppins',sans-serif" }}>
+                            <span className="text-[#00C950] text-xs sm:text-sm font-semibold tracking-widest uppercase" style={{ fontFamily: "'Poppins',sans-serif" }}>
                                 WHAT PEOPLE SAY
                             </span>
                             <h2 className="mt-2 text-white font-semibold leading-tight"
-                                style={{ fontFamily: "'Poppins',sans-serif", fontSize: "clamp(2rem,4vw,3.2rem)" }}>
+                                style={{ fontFamily: "'Poppins',sans-serif", fontSize: "clamp(2rem, 4vw, 3.2rem)" }}>
                                 Loved by{" "}
                                 <span style={{
                                     backgroundImage: "linear-gradient(90deg,#00C950,#4ade80,#00C950)",
@@ -336,12 +342,16 @@ export default function ImpactAndTestimonials() {
                             </h2>
                         </div>
 
-                        {/* Testimonial cards — stacked layout with big quote mark */}
-                        <div className="grid lg:grid-cols-3 gap-5">
+                        {/* Testimonial cards — Responsive Carousel/Grid */}
+                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
                             {testimonials.map((t, i) => (
                                 <div
                                     key={i}
-                                    className={`tcard relative rounded-2xl p-7 flex flex-col justify-between gap-6 ${activeTestimonial === i ? "active" : ""}`}
+                                    className={`
+                                        tcard flex-col justify-between gap-6 relative rounded-2xl p-6 sm:p-7
+                                        ${activeTestimonial === i ? "flex" : "hidden lg:flex"}
+                                        ${activeTestimonial === i ? "active" : ""}
+                                    `}
                                     style={{
                                         border: "1px solid rgba(255,255,255,0.07)",
                                         background: "rgba(11,15,10,0.95)",
@@ -354,18 +364,18 @@ export default function ImpactAndTestimonials() {
                                 >
 
                                     {/* Tag pill */}
-                                    <span className="inline-flex self-start items-center gap-1.5 text-[11px] font-medium px-3 py-1 rounded-full"
+                                    <span className="inline-flex self-start items-center gap-1.5 text-[10px] sm:text-[11px] font-medium px-3 py-1 rounded-full"
                                         style={{ background: "rgba(0,201,80,0.08)", border: "1px solid rgba(0,201,80,0.2)", color: "#00C950" }}>
                                         {t.tag}
                                     </span>
 
                                     {/* Quote */}
-                                    <p className="text-gray-100 text-[15px] flex-1 relative z-10">
-                                        {t.quote}
+                                    <p className="text-gray-100 text-sm sm:text-[15px] flex-1 relative z-10 leading-relaxed">
+                                        "{t.quote}"
                                     </p>
 
                                     {/* Author */}
-                                    <div className="flex items-center gap-3 pt-4"
+                                    <div className="flex items-center gap-3 pt-4 mt-auto"
                                         style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
                                         {/* Avatar circle */}
                                         <div className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold text-white shrink-0"
@@ -376,12 +386,12 @@ export default function ImpactAndTestimonials() {
                                             <p className="text-white font-semibold text-sm" style={{ fontFamily: "'Poppins',sans-serif" }}>
                                                 {t.name}
                                             </p>
-                                            <p className="text-gray-500 text-xs">{t.role}</p>
+                                            <p className="text-gray-400 text-xs">{t.role}</p>
                                         </div>
 
-                                        {/* Active indicator */}
+                                        {/* Active indicator (Visible on desktop to show selection) */}
                                         {activeTestimonial === i && (
-                                            <div className="ml-auto w-2 h-2 rounded-full bg-[#00C950]"
+                                            <div className="hidden lg:block ml-auto w-2 h-2 rounded-full bg-[#00C950]"
                                                 style={{ boxShadow: "0 0 8px rgba(0,201,80,0.8)" }} />
                                         )}
                                     </div>
@@ -390,7 +400,7 @@ export default function ImpactAndTestimonials() {
                         </div>
 
                         {/* Dot navigation */}
-                        <div className="flex items-center justify-center gap-2 mt-6">
+                        <div className="flex items-center justify-center gap-2 mt-8">
                             {testimonials.map((_, i) => (
                                 <button
                                     key={i}
@@ -406,14 +416,14 @@ export default function ImpactAndTestimonials() {
                         </div>
 
                         {/* Floating marquee strip */}
-                        <div className="mt-7 overflow-hidden relative py-4"
+                        <div className="mt-8 sm:mt-12 overflow-hidden relative py-3 sm:py-4"
                             style={{ borderTop: "1px solid rgba(255,255,255,0.04)", borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
-                            <div className="flex gap-12 whitespace-nowrap"
-                                style={{ animation: "marquee 22s linear infinite" }}>
+                            <div className="flex gap-8 sm:gap-12 whitespace-nowrap"
+                                style={{ animation: "marquee 25s linear infinite" }}>
                                 {[...Array(2)].map((_, ri) => (
-                                    <div key={ri} className="flex gap-12 shrink-0">
+                                    <div key={ri} className="flex gap-8 sm:gap-12 shrink-0">
                                         {["Zero Waste Living", "AI Powered Cycles", "72°C Sanitization", "Eco Friendly Output", "Smart Composting", "Nutrient-Rich Powder", "Sustainable Kitchen"].map((w, wi) => (
-                                            <span key={wi} className="text-xs font-medium tracking-widest uppercase flex items-center gap-3"
+                                            <span key={wi} className="text-[10px] sm:text-xs font-medium tracking-widest uppercase flex items-center gap-2 sm:gap-3"
                                                 style={{ color: "rgba(0,201,80,0.45)", fontFamily: "'Poppins',sans-serif" }}>
                                                 <span className="w-1 h-1 rounded-full bg-[#00C950] opacity-60" />
                                                 {w}
