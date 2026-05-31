@@ -108,7 +108,7 @@ export default function ImpactAndTestimonials() {
     return (
         <>
             <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=DM+Sans:wght@300;400;500&display=swap');
 
         @keyframes fadeUp {
           from { opacity:0; transform:translateY(28px); }
@@ -287,10 +287,28 @@ export default function ImpactAndTestimonials() {
                 </div>
 
                 {/* PART 2 — TESTIMONIALS (Creative version) */}
-                <div className="relative py-20 lg:py-28">
+                <div className="relative py-12">
                     {/* Background texture lines */}
-                    <div className="pointer-events-none absolute inset-0 opacity-[0.03]"
-                        style={{ backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(0,201,80,1) 60px, rgba(0,201,80,1) 61px)", backgroundSize: "100% 61px" }} />
+                    <div
+                        className="pointer-events-none absolute inset-0 opacity-[0.04]"
+                        style={{
+                            backgroundImage: `
+                            repeating-linear-gradient(
+                                0deg,
+                                transparent,
+                                transparent 59px,
+                                rgba(0,201,80,1) 60px
+                            ),
+                            repeating-linear-gradient(
+                                90deg,
+                                transparent,
+                                transparent 59px,
+                                rgba(0,201,80,1) 60px
+                            )
+                            `,
+                            backgroundSize: "60px 60px",
+                        }}
+                    />
 
                     {/* Ambient glow */}
                     <div className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 w-175 h-87.5"
@@ -299,13 +317,13 @@ export default function ImpactAndTestimonials() {
                     <div className="relative z-10 2xl:max-w-360 w-[90%] mx-auto px-4">
 
                         {/* Header */}
-                        <div className="text-center mb-16"
+                        <div className="text-center mb-8"
                             style={{ opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(20px)", transition: "opacity .7s ease .3s, transform .7s ease .3s" }}>
-                            <span className="text-[#00C950] text-xs font-semibold tracking-[0.22em] uppercase" style={{ fontFamily: "'Syne',sans-serif" }}>
+                            <span className="text-[#00C950] text-sm font-semibold tracking-widest uppercase" style={{ fontFamily: "'Poppins',sans-serif" }}>
                                 WHAT PEOPLE SAY
                             </span>
-                            <h2 className="mt-3 text-white font-bold leading-tight"
-                                style={{ fontFamily: "'Syne',sans-serif", fontSize: "clamp(2rem,4vw,3.2rem)" }}>
+                            <h2 className="mt-2 text-white font-semibold leading-tight"
+                                style={{ fontFamily: "'Poppins',sans-serif", fontSize: "clamp(2rem,4vw,3.2rem)" }}>
                                 Loved by{" "}
                                 <span style={{
                                     backgroundImage: "linear-gradient(90deg,#00C950,#4ade80,#00C950)",
@@ -327,18 +345,13 @@ export default function ImpactAndTestimonials() {
                                     style={{
                                         border: "1px solid rgba(255,255,255,0.07)",
                                         background: "rgba(11,15,10,0.95)",
-                                        minHeight: 260,
+                                        minHeight: 230,
                                         opacity: inView ? 1 : 0,
                                         transform: inView ? "translateY(0)" : "translateY(32px)",
                                         transition: `opacity .65s ease ${0.4 + i * .12}s, transform .65s ease ${0.4 + i * .12}s`,
                                     }}
                                     onClick={() => setActiveTestimonial(i)}
                                 >
-                                    {/* Giant quote mark */}
-                                    <div className="absolute top-4 right-5 text-[80px] leading-none font-bold select-none pointer-events-none"
-                                        style={{ color: "rgba(0,201,80,0.09)", fontFamily: "Georgia, serif", lineHeight: 1 }}>
-                                        "
-                                    </div>
 
                                     {/* Tag pill */}
                                     <span className="inline-flex self-start items-center gap-1.5 text-[11px] font-medium px-3 py-1 rounded-full"
@@ -347,7 +360,7 @@ export default function ImpactAndTestimonials() {
                                     </span>
 
                                     {/* Quote */}
-                                    <p className="text-gray-300 text-[15px] leading-relaxed flex-1 relative z-10">
+                                    <p className="text-gray-100 text-[15px] flex-1 relative z-10">
                                         {t.quote}
                                     </p>
 
@@ -360,7 +373,7 @@ export default function ImpactAndTestimonials() {
                                             {t.avatar}
                                         </div>
                                         <div>
-                                            <p className="text-white font-semibold text-sm" style={{ fontFamily: "'Syne',sans-serif" }}>
+                                            <p className="text-white font-semibold text-sm" style={{ fontFamily: "'Poppins',sans-serif" }}>
                                                 {t.name}
                                             </p>
                                             <p className="text-gray-500 text-xs">{t.role}</p>
@@ -377,7 +390,7 @@ export default function ImpactAndTestimonials() {
                         </div>
 
                         {/* Dot navigation */}
-                        <div className="flex items-center justify-center gap-2 mt-10">
+                        <div className="flex items-center justify-center gap-2 mt-6">
                             {testimonials.map((_, i) => (
                                 <button
                                     key={i}
@@ -393,7 +406,7 @@ export default function ImpactAndTestimonials() {
                         </div>
 
                         {/* Floating marquee strip */}
-                        <div className="mt-16 overflow-hidden relative py-4"
+                        <div className="mt-7 overflow-hidden relative py-4"
                             style={{ borderTop: "1px solid rgba(255,255,255,0.04)", borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
                             <div className="flex gap-12 whitespace-nowrap"
                                 style={{ animation: "marquee 22s linear infinite" }}>
@@ -401,7 +414,7 @@ export default function ImpactAndTestimonials() {
                                     <div key={ri} className="flex gap-12 shrink-0">
                                         {["Zero Waste Living", "AI Powered Cycles", "72°C Sanitization", "Eco Friendly Output", "Smart Composting", "Nutrient-Rich Powder", "Sustainable Kitchen"].map((w, wi) => (
                                             <span key={wi} className="text-xs font-medium tracking-widest uppercase flex items-center gap-3"
-                                                style={{ color: "rgba(0,201,80,0.45)", fontFamily: "'Syne',sans-serif" }}>
+                                                style={{ color: "rgba(0,201,80,0.45)", fontFamily: "'Poppins',sans-serif" }}>
                                                 <span className="w-1 h-1 rounded-full bg-[#00C950] opacity-60" />
                                                 {w}
                                             </span>
