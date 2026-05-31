@@ -26,6 +26,7 @@ const stagger = {
 export default function Hero() {
     return (
         <section
+            id="about"
             className="relative min-h-screen overflow-hidden lg:bg-[url('/hero-bg.png')] lg:bg-contain lg:bg-right lg:bg-no-repeat bg-black"
         >
             <div className="relative z-10 w-[90%] 2xl:max-w-360 mx-auto px-4 sm:px-6">

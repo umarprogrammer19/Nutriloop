@@ -155,6 +155,7 @@ export default function FAQ() {
       `}</style>
 
             <section
+                id="faq"
                 ref={sectionRef}
                 className="relative bg-[#070a05] py-16 sm:py-20 lg:py-28 overflow-hidden bg-[url('/faqs.png')] bg-cover bg-center bg-no-repeat"
                 style={{ fontFamily: "'DM Sans',sans-serif" }}

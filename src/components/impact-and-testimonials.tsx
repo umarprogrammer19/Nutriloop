@@ -191,6 +191,7 @@ export default function ImpactAndTestimonials() {
       `}</style>
 
             <section
+                id="impact"
                 ref={sectionRef}
                 className="relative bg-[#070a05] overflow-hidden"
                 style={{ fontFamily: "'DM Sans', sans-serif" }}
