@@ -52,6 +52,7 @@ export default function WhyNutriLoop() {
     const [mounted, setMounted] = useState(false);
     const [playing, setPlaying] = useState(false);
     const sectionRef = useRef<HTMLElement>(null);
+    const videoRef = useRef<HTMLVideoElement>(null);
 
     useEffect(() => {
         const obs = new IntersectionObserver(
@@ -61,6 +62,19 @@ export default function WhyNutriLoop() {
         if (sectionRef.current) obs.observe(sectionRef.current);
         return () => obs.disconnect();
     }, []);
+
+    useEffect(() => {
+        if (videoRef.current) {
+            if (playing) {
+                videoRef.current.play().catch(() => {
+                    // Autoplay blocked, user needs to interact
+                    setPlaying(false);
+                });
+            } else {
+                videoRef.current.pause();
+            }
+        }
+    }, [playing]);
 
     return (
         <>
@@ -121,29 +135,9 @@ export default function WhyNutriLoop() {
 
             <section
                 ref={sectionRef}
-                className="relative bg-[#070a05] py-20 lg:py-28 overflow-hidden"
+                className="relative bg-[#070a05] py-18 overflow-hidden bg-[url('/why-bg.png')] bg-cover bg-center bg-no-repeat"
                 style={{ fontFamily: "'DM Sans', sans-serif" }}
             >
-                {/* Ambient glows */}
-                <div className="pointer-events-none absolute -left-32 top-1/2 -translate-y-1/2 w-105 h-105 rounded-full"
-                    style={{ background: "radial-gradient(circle, rgba(0,201,80,0.08) 0%, transparent 70%)", animation: "glowBreath 6s ease-in-out infinite" }} />
-                <div className="pointer-events-none absolute -right-24 bottom-10 w-[320px] h-80 rounded-full"
-                    style={{ background: "radial-gradient(circle, rgba(0,201,80,0.06) 0%, transparent 70%)", animation: "glowBreath 8s ease-in-out infinite reverse" }} />
-
-                {/* Decorative leaves */}
-                <div className="leaf-left pointer-events-none absolute left-0 top-8 opacity-70 select-none hidden xl:block">
-                    <svg width="90" height="180" viewBox="0 0 90 180" fill="none">
-                        <path d="M10 170 Q-20 90 60 10 Q80 80 10 170Z" fill="rgba(0,201,80,0.18)" />
-                        <path d="M10 170 Q20 120 55 40" stroke="rgba(0,201,80,0.35)" strokeWidth="1" fill="none" />
-                    </svg>
-                </div>
-                <div className="leaf-right pointer-events-none absolute right-0 bottom-12 opacity-60 select-none hidden xl:block">
-                    <svg width="80" height="160" viewBox="0 0 80 160" fill="none">
-                        <path d="M70 150 Q100 75 20 5 Q5 70 70 150Z" fill="rgba(0,201,80,0.15)" />
-                        <path d="M70 150 Q60 100 25 35" stroke="rgba(0,201,80,0.3)" strokeWidth="1" fill="none" />
-                    </svg>
-                </div>
-
                 {/* Top hairline */}
                 <div className="absolute top-0 inset-x-0 h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(0,201,80,0.3), transparent)" }} />
 
@@ -152,27 +146,30 @@ export default function WhyNutriLoop() {
 
                         {/* ── LEFT: Video card ── */}
                         <div
-                            className={`why-card-left relative rounded-2xl overflow-hidden ${mounted ? "opacity-100" : "opacity-0"}`}
+                            className={`why-card-left relative rounded-2xl overflow-hidden group ${mounted ? "opacity-100" : "opacity-0"}`}
                             style={{
                                 border: "1px solid rgba(255,255,255,0.07)",
                                 background: "rgba(255,255,255,0.02)",
                                 minHeight: 420,
                             }}
                         >
-                            {/* Thumbnail image */}
-                            <div className="relative w-full h-full min-h-95">
-                                {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img
-                                    src="/why-bg.png"
-                                    alt="NutriLoop in action"
+                            {/* Video container */}
+                            <div className="relative w-full h-full min-h-95 bg-black">
+                                {/* Video element */}
+                                <video
+                                    ref={videoRef}
                                     className="absolute inset-0 w-full h-full object-cover"
-                                    onError={(e) => {
-                                        // fallback gradient if image missing
-                                        (e.target as HTMLImageElement).style.display = "none";
-                                    }}
-                                />
+                                    poster="/why-bg.png"
+                                    muted
+                                    loop
+                                    playsInline
+                                    preload="metadata"
+                                >
+                                    <source src="/nutriloop.mp4" type="video/mp4" />
+                                    Your browser does not support the video tag.
+                                </video>
 
-                                {/* Fallback dark gradient (visible if image missing) */}
+                                {/* Fallback dark gradient (visible if video fails) */}
                                 <div
                                     className="absolute inset-0"
                                     style={{
@@ -181,47 +178,75 @@ export default function WhyNutriLoop() {
                                 />
 
                                 {/* Subtle dark overlay for readability */}
-                                <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.15) 60%, transparent 100%)" }} />
+                                <div
+                                    className="absolute inset-0 transition-opacity duration-300"
+                                    style={{
+                                        background: "linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.15) 60%, transparent 100%)",
+                                        opacity: playing ? 0.3 : 0.65,
+                                    }}
+                                />
 
-                                {/* Horizontal scan shimmer */}
-                                <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                                    <div
-                                        className="absolute top-0 bottom-0 w-32"
-                                        style={{
-                                            background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.04), transparent)",
-                                            animation: "scanH 3.5s ease-in-out infinite",
-                                        }}
-                                    />
-                                </div>
+                                {/* Horizontal scan shimmer - only when paused */}
+                                {!playing && (
+                                    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                                        <div
+                                            className="absolute top-0 bottom-0 w-32"
+                                            style={{
+                                                background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.04), transparent)",
+                                                animation: "scanH 3.5s ease-in-out infinite",
+                                            }}
+                                        />
+                                    </div>
+                                )}
 
-                                {/* Play button — centered */}
-                                <div className="absolute inset-0 flex items-center justify-center">
+                                {/* Play/Pause button — centered (only show when not playing) */}
+                                {!playing && (
+                                    <div className="absolute inset-0 flex items-center justify-center">
+                                        <button
+                                            className="play-btn relative z-10 flex items-center justify-center w-16 h-16 rounded-full"
+                                            style={{
+                                                background: "rgba(0,201,80,0.9)",
+                                                boxShadow: "0 0 0 8px rgba(0,201,80,0.18), 0 0 24px rgba(0,201,80,0.3)",
+                                            }}
+                                            onClick={() => setPlaying(true)}
+                                            aria-label="Play video"
+                                        >
+                                            {/* Ripple rings */}
+                                            {[0, 1].map((i) => (
+                                                <span
+                                                    key={i}
+                                                    className="absolute inset-0 rounded-full border border-[#00C950]/50"
+                                                    style={{
+                                                        animation: `ripple 2s ease-out ${i * 0.8}s infinite`,
+                                                    }}
+                                                />
+                                            ))}
+
+                                            {/* Triangle */}
+                                            <svg width="22" height="22" viewBox="0 0 24 24" fill="black">
+                                                <polygon points="6,4 20,12 6,20" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                )}
+
+                                {/* Pause button - top right when playing */}
+                                {playing && (
                                     <button
-                                        className="play-btn relative z-10 flex items-center justify-center w-16 h-16 rounded-full"
+                                        className="absolute top-4 right-4 z-20 flex items-center justify-center w-12 h-12 rounded-full bg-black/60 hover:bg-black/80 transition-all"
+                                        onClick={() => setPlaying(false)}
+                                        aria-label="Pause video"
                                         style={{
-                                            background: "rgba(0,201,80,0.9)",
-                                            boxShadow: "0 0 0 8px rgba(0,201,80,0.18), 0 0 24px rgba(0,201,80,0.3)",
+                                            backdropFilter: "blur(6px)",
+                                            border: "1px solid rgba(0,201,80,0.4)",
                                         }}
-                                        onClick={() => setPlaying(!playing)}
-                                        aria-label="Play video"
                                     >
-                                        {/* Ripple rings */}
-                                        {[0, 1].map((i) => (
-                                            <span
-                                                key={i}
-                                                className="absolute inset-0 rounded-full border border-[#00C950]/50"
-                                                style={{
-                                                    animation: `ripple 2s ease-out ${i * 0.8}s infinite`,
-                                                }}
-                                            />
-                                        ))}
-
-                                        {/* Triangle */}
-                                        <svg width="22" height="22" viewBox="0 0 24 24" fill="black">
-                                            <polygon points="6,4 20,12 6,20" />
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                                            <rect x="6" y="4" width="4" height="16" />
+                                            <rect x="14" y="4" width="4" height="16" />
                                         </svg>
                                     </button>
-                                </div>
+                                )}
 
                                 {/* Bottom caption */}
                                 <div className="absolute bottom-0 left-0 right-0 p-6">
