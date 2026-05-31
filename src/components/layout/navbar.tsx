@@ -29,7 +29,7 @@ export default function Navbar() {
                             alt="NutriLoop"
                             width={180}
                             height={40}
-                            className="w-32 sm:w-[180px] h-auto" // Slightly smaller logo on mobile
+                            className="w-32 sm:w-45 h-auto" // Slightly smaller logo on mobile
                             priority
                         />
                     </Link>
@@ -82,7 +82,7 @@ export default function Navbar() {
                         absolute top-[110%] left-0 right-0 mx-0 sm:mx-6 
                         rounded-2xl border border-white/10 bg-black/80 backdrop-blur-2xl 
                         overflow-hidden transition-all duration-300 ease-in-out md:hidden z-10
-                        ${isOpen ? "max-h-[400px] opacity-100 py-4 mt-2" : "max-h-0 opacity-0 py-0 border-transparent"}
+                        ${isOpen ? "max-h-100 opacity-100 py-4 mt-2" : "max-h-0 opacity-0 py-0 border-transparent"}
                     `}
                 >
                     <div className="flex flex-col px-6 gap-5">
