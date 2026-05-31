@@ -1,5 +1,6 @@
 import Hero from "@/components/hero";
 import ImpactAndTestimonials from "@/components/impact-and-testimonials";
+import Footer from "@/components/layout/footer";
 import Navbar from "@/components/layout/navbar";
 import WhyNutriLoop from "@/components/why-nutriloop";
 import HowItWorks from "@/components/work";
@@ -12,6 +13,7 @@ export default function Home() {
       <HowItWorks />
       <WhyNutriLoop />
       <ImpactAndTestimonials />
+      <Footer />
     </>
   );
 }
