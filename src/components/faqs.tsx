@@ -199,7 +199,7 @@ export default function FAQ() {
                                 Frequently Asked Questions
                             </h2>
 
-                            <p className="mt-2 sm:mt-3 text-gray-100 text-sm sm:text-[16px]">
+                            <p className="mt-2 sm:mt-3 text-white text-sm sm:text-[16px]">
                                 Everything you need to know about NutriLoop.
                             </p>
 
@@ -252,7 +252,7 @@ export default function FAQ() {
                                                 {/* Green top rule */}
                                                 <div className="h-px mb-3 sm:mb-4"
                                                     style={{ background: "linear-gradient(90deg,rgba(0,201,80,0.3),transparent)" }} />
-                                                <p className="text-gray-100 text-xs sm:text-sm leading-relaxed pl-10 sm:pl-10.5">
+                                                <p className="text-white text-xs sm:text-sm leading-relaxed pl-10 sm:pl-10.5">
                                                     {faq.a}
                                                 </p>
                                             </div>

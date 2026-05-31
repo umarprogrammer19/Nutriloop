@@ -371,7 +371,7 @@ export default function ImpactAndTestimonials() {
                                     </span>
 
                                     {/* Quote */}
-                                    <p className="text-gray-100 text-sm sm:text-[15px] flex-1 relative z-10 leading-relaxed">
+                                    <p className="text-white text-sm sm:text-[15px] flex-1 relative z-10 leading-relaxed">
                                         "{t.quote}"
                                     </p>
 

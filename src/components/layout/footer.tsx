@@ -179,7 +179,7 @@ export default function Footer() {
                                 />
                             </Link>
 
-                            <p className="text-gray-100 text-sm max-w-sm lg:max-w-60 leading-relaxed">
+                            <p className="text-white text-sm max-w-sm lg:max-w-60 leading-relaxed">
                                 AI-powered ecosystem that transforms organic waste into value for a greener, healthier future.
                             </p>
 
@@ -230,7 +230,7 @@ export default function Footer() {
                             <h4 className="text-white font-semibold text-sm mb-3 sm:mb-5 tracking-wide" style={{ fontFamily: "'Syne',sans-serif" }}>
                                 Stay Updated
                             </h4>
-                            <p className="text-gray-100 text-xs mb-4">
+                            <p className="text-white text-xs mb-4">
                                 Get the latest updates on sustainable innovation.
                             </p>
 
@@ -265,11 +265,11 @@ export default function Footer() {
 
                     {/* ── Bottom bar ── */}
                     <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-4 text-center md:text-left">
-                        <p className="text-gray-500 text-xs">
+                        <p className="text-white text-sm">
                             © {new Date().getFullYear()} NutriLoop. All rights reserved.
                         </p>
 
-                        <div className="flex items-center justify-center gap-1.5 text-xs text-gray-400">
+                        <div className="flex items-center justify-center gap-1.5 text-sm text-white">
                             Designed with
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="rgba(0,201,80,0.7)" style={{ margin: "0 1px" }}>
                                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
