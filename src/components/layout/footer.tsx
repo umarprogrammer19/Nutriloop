@@ -4,9 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
-const quickLinks = ["About Us", "How It Works", "Technology", "AI Ecosystem"];
-const resources = ["Impact", "Gallery", "FAQ", "Blog"];
-const legal = ["Privacy Policy", "Terms of Service", "Cookie Policy"];
+const quickLinks = [
+    { name: "About Us", href: "#about" },
+    { name: "How It Works", href: "#how-it-works" },
+];
+const resources = [
+    { name: "Impact", href: "#impact" },
+    { name: "FAQ", href: "#faq" },
+];
 
 const socials = [
     {
@@ -189,8 +194,7 @@ export default function Footer() {
                         </div>
 
                         {/* ── Link Columns Wrapper ── */}
-                        {/* 2 cols on mobile, 3 on desktop */}
-                        <div className="sm:col-span-1 lg:col-span-5 grid grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div className="sm:col-span-1 lg:col-span-5 grid grid-cols-2 gap-8">
 
                             {/* ── Quick Links ── */}
                             <div>
@@ -199,8 +203,8 @@ export default function Footer() {
                                 </h4>
                                 <ul className="flex flex-col gap-2 sm:gap-1">
                                     {quickLinks.map((l) => (
-                                        <li key={l}>
-                                            <a href="#" className="footer-link">{l}</a>
+                                        <li key={l.name}>
+                                            <a href={l.href} className="footer-link">{l.name}</a>
                                         </li>
                                     ))}
                                 </ul>
@@ -213,22 +217,8 @@ export default function Footer() {
                                 </h4>
                                 <ul className="flex flex-col gap-2 sm:gap-1">
                                     {resources.map((l) => (
-                                        <li key={l}>
-                                            <a href="#" className="footer-link">{l}</a>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-
-                            {/* ── Legal ── */}
-                            <div className="col-span-2 lg:col-span-1">
-                                <h4 className="text-white font-semibold text-sm mb-4 sm:mb-5 tracking-wide" style={{ fontFamily: "'Syne',sans-serif" }}>
-                                    Legal
-                                </h4>
-                                <ul className="flex flex-col sm:flex-row lg:flex-col gap-3 sm:gap-6 lg:gap-1">
-                                    {legal.map((l) => (
-                                        <li key={l}>
-                                            <a href="#" className="footer-link">{l}</a>
+                                        <li key={l.name}>
+                                            <a href={l.href} className="footer-link">{l.name}</a>
                                         </li>
                                     ))}
                                 </ul>

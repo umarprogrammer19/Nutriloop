@@ -36,13 +36,13 @@ export default function Navbar() {
                     {/* Desktop Menu */}
                     <nav className="hidden md:flex items-center gap-6 lg:gap-8">
                         {navLinks.map((link) => (
-                            <Link
+                            <a
                                 key={link.name}
                                 href={link.href}
                                 className="text-gray-300 hover:text-green-400 text-sm lg:text-base transition"
                             >
                                 {link.name}
-                            </Link>
+                            </a>
                         ))}
                     </nav>
 
@@ -86,14 +86,14 @@ export default function Navbar() {
                 >
                     <div className="flex flex-col px-6 gap-5">
                         {navLinks.map((link) => (
-                            <Link
+                            <a
                                 key={link.name}
                                 href={link.href}
                                 className="text-gray-300 hover:text-green-400 text-base font-medium transition"
-                                onClick={() => setIsOpen(false)} // Close menu on click
+                                onClick={() => setIsOpen(false)}
                             >
                                 {link.name}
-                            </Link>
+                            </a>
                         ))}
                         <hr className="border-white/10 my-1" />
                         <button className="w-full text-center rounded-full bg-green-500 px-6 py-3 text-black font-semibold hover:bg-green-400 transition mt-1">
