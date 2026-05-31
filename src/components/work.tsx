@@ -63,14 +63,12 @@ export default function HowItWorks() {
     return (
         <section
             ref={sectionRef}
-            className="relative w-full bg-[#080a06] overflow-hidden py-12"
+            className="relative w-full bg-[#080a06] overflow-hidden py-10 md:py-12"
         >
-
             {/* Top divider line */}
             <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-[#00C950]/30 to-transparent" />
 
             <div className="relative z-10 2xl:max-w-360 w-[90%] mx-auto px-4">
-
                 {/* Header */}
                 <div
                     className="text-center mb-16"
@@ -86,19 +84,17 @@ export default function HowItWorks() {
                     >
                         HOW IT WORKS
                     </span>
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-2">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-2">
                         From Waste to Worth
                     </h2>
-                    <p className="text-white text-base md:text-lg max-w-xl mx-auto">
+                    <p className="text-white text-sm sm:text-base md:text-md max-w-xl mx-auto">
                         NutriLoop uses advanced mechatronics and AI to convert organic waste
-                        <br className="hidden md:block" />
                         into a safe, dry, and nutrient-rich powder.
                     </p>
                 </div>
 
-                {/* Steps Row */}
-                <div className="relative flex items-start justify-between">
-
+                {/* Steps Row (Desktop) */}
+                <div className="hidden lg:flex relative items-start justify-between">
                     {/* Connecting line — sits behind circles */}
                     <div className="absolute left-0 right-0 top-18 flex items-center pointer-events-none z-0 px-[6%]">
                         <div className="flex-1 h-0.5 bg-linear-to-r from-[#00C950]/20 via-[#00C950]/50 to-[#00C950]/20" />
@@ -121,8 +117,7 @@ export default function HowItWorks() {
                                 className="relative mb-5 cursor-pointer"
                                 style={{
                                     transition: "transform 0.3s ease",
-                                    transform:
-                                        activeStep === step.id ? "scale(1.06)" : "scale(1)",
+                                    transform: activeStep === step.id ? "scale(1.06)" : "scale(1)",
                                 }}
                             >
                                 {/* Outer glow ring */}
@@ -152,7 +147,7 @@ export default function HowItWorks() {
                                         alt={step.title}
                                         height={500}
                                         width={500}
-                                        className="w-32 h-32"
+                                        className="w-24 h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 object-cover"
                                         style={{
                                             filter:
                                                 activeStep === step.id
@@ -194,9 +189,60 @@ export default function HowItWorks() {
                     ))}
                 </div>
 
+                {/* Mobile Version (Updated to Grid) */}
+                <div className="lg:hidden">
+                    <div className="grid grid-cols-2 gap-x-4 gap-y-10 pb-4">
+                        {steps.map((step) => (
+                            <div
+                                key={step.id}
+                                className="flex flex-col items-center text-center"
+                            >
+                                <div className="relative mb-4">
+                                    <div
+                                        className="
+                                        w-24
+                                        h-24
+                                        sm:w-28
+                                        sm:h-28
+                                        rounded-full
+                                        overflow-hidden
+                                        border
+                                        border-[#00C950]/30
+                                        bg-black
+                                      "
+                                    >
+                                        <Image
+                                            src={step.image}
+                                            alt={step.title}
+                                            width={200}
+                                            height={200}
+                                            className="w-full h-full object-cover"
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="flex flex-col items-center gap-1 mb-2">
+                                    <div className="flex items-center gap-2">
+                                        <span className="shrink-0 w-5 h-5 rounded-full bg-[#00C950] text-black text-xs font-bold flex items-center justify-center">
+                                            {step.id}
+                                        </span>
+                                        <span className="text-white font-semibold text-sm">
+                                            {step.title}
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <p className="text-white/80 text-xs sm:text-sm px-2">
+                                    {step.description}
+                                </p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
                 {/* CTA Button */}
                 <div
-                    className="flex justify-center mt-10"
+                    className="flex justify-center mt-12"
                     style={{
                         opacity: visible ? 1 : 0,
                         transform: visible ? "translateY(0)" : "translateY(20px)",
@@ -204,7 +250,7 @@ export default function HowItWorks() {
                     }}
                 >
                     <button
-                        className="group relative flex items-center gap-3 border border-white/40 text-white text-sm font-medium px-7 py-3 rounded-lg overflow-hidden transition-all duration-300 hover:border-[#00C950]/60"
+                        className="group relative items-center gap-3 border border-white/40 text-white text-sm font-medium px-7 py-3 rounded-lg overflow-hidden transition-all duration-300 hover:border-[#00C950]/60 lg:flex hidden"
                         style={{
                             background: "rgba(255,255,255,0.03)",
                             backdropFilter: "blur(6px)",
