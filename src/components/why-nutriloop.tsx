@@ -157,7 +157,7 @@ export default function WhyNutriLoop() {
                                 playsInline
                                 preload="auto"
                             >
-                                <source src="/nutriloop.mp4" type="video/mp4" />
+                                <source src="https://firebasestorage.googleapis.com/v0/b/dungeonmind-ea23c.firebasestorage.app/o/WhatsApp%20Video%202026-06-01%20at%202.12.40%20AM.mp4?alt=media&token=92b4b5f3-404d-4b87-9c4c-221cb7555146" type="video/mp4" />
                                 Your browser does not support the video tag.
                             </video>
 
