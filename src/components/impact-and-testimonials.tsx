@@ -223,7 +223,7 @@ export default function ImpactAndTestimonials() {
 
                     <div className="relative z-10 2xl:max-w-350 w-[90%] mx-auto px-4">
                         {/* Header */}
-                        <div className="text-center mb-14"
+                        <div className="text-center mb-8"
                             style={{ opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(20px)", transition: "opacity .7s ease, transform .7s ease" }}>
                             <span className="text-[#00C950] text-sm font-semibold tracking-widest uppercase">
                                 OUR IMPACT
@@ -232,7 +232,7 @@ export default function ImpactAndTestimonials() {
                                 style={{ fontFamily: "'Poppins',sans-serif", fontSize: "clamp(2rem,4vw,3.2rem)" }}>
                                 Building a Better Tomorrow
                             </h2>
-                            <p className="mt-3 text-gray-400 text-base">Every cycle you run makes a real difference.</p>
+                            <p className="mt-2 text-gray-200 text-base">Every cycle you run makes a real difference.</p>
                         </div>
 
                         {/* Stat cards */}
@@ -258,7 +258,7 @@ export default function ImpactAndTestimonials() {
                                     {/* Text */}
                                     <div>
                                         <p className="text-[#00C950] font-bold leading-none"
-                                            style={{ fontFamily: "'Syne',sans-serif", fontSize: "clamp(1.6rem,3vw,2rem)", textShadow: "0 0 20px rgba(0,201,80,0.4)" }}>
+                                            style={{ fontFamily: "'Poppins',sans-serif", fontSize: "clamp(1.6rem,3vw,2rem)", textShadow: "0 0 20px rgba(0,201,80,0.4)" }}>
                                             {s.displayValue
                                                 ? s.displayValue
                                                 : i === 0 ? v125
@@ -267,10 +267,10 @@ export default function ImpactAndTestimonials() {
                                                             : s.value}
                                             {s.suffix}
                                         </p>
-                                        <p className="text-white font-semibold text-sm mt-1" style={{ fontFamily: "'Syne',sans-serif" }}>
+                                        <p className="text-white tracking-wide font-semibold text-sm mt-1" style={{ fontFamily: "'Poppins',sans-serif" }}>
                                             {s.label}
                                         </p>
-                                        <p className="text-gray-500 text-xs mt-1 leading-snug">{s.sub}</p>
+                                        <p className="text-gray-200 text-xs mt-1 leading-snug">{s.sub}</p>
                                     </div>
 
                                     {/* Corner glow */}
