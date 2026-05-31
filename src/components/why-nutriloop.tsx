@@ -135,26 +135,18 @@ export default function WhyNutriLoop() {
 
             <section
                 ref={sectionRef}
-                className="relative bg-[#070a05] py-18 overflow-hidden bg-[url('/why-bg.png')] bg-cover bg-center bg-no-repeat"
+                className="relative bg-[#070a05] py-16 md:py-24 overflow-hidden bg-[url('/why-bg.png')] bg-cover bg-center bg-no-repeat"
             >
                 {/* Top hairline */}
                 <div className="absolute top-0 inset-x-0 h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(0,201,80,0.3), transparent)" }} />
 
-                <div className="relative z-10 2xl:max-w-360 w-[90%] mx-auto px-4">
-                    <div className="grid lg:grid-cols-2 gap-6 items-stretch">
+                <div className="relative z-10 max-w-7xl w-[90%] mx-auto">
+                    <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 items-stretch">
 
                         {/* ── LEFT: Video card ── */}
-                        <div className="relative w-full h-full min-h-95">
-
-                            {/* Fallback background */}
-                            {/* <div
-                                className="absolute inset-0 z-0"
-                                style={{
-                                    background:
-                                        "linear-gradient(135deg, #0d1a0d 0%, #0a1a10 40%, #071208 100%)",
-                                }}
-                            /> */}
-
+                        <div
+                            className={`why-card-left relative w-full h-87.5 sm:h-112.5 lg:h-auto lg:min-h-full rounded-2xl overflow-hidden ${mounted ? "opacity-100" : "opacity-0"}`}
+                        >
                             {/* Video */}
                             <video
                                 ref={videoRef}
@@ -187,7 +179,7 @@ export default function WhyNutriLoop() {
                             {!playing && (
                                 <div className="absolute inset-0 flex items-center justify-center z-40">
                                     <button
-                                        className="play-btn relative flex items-center justify-center w-16 h-16 rounded-full"
+                                        className="play-btn relative flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full"
                                         style={{
                                             background: "rgba(0,201,80,0.9)",
                                             boxShadow:
@@ -195,18 +187,17 @@ export default function WhyNutriLoop() {
                                         }}
                                         onClick={() => setPlaying(true)}
                                     >
-                                        <svg width="22" height="22" viewBox="0 0 24 24" fill="black">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="black" className="sm:w-5.5 sm:h-5.5">
                                             <polygon points="6,4 20,12 6,20" />
                                         </svg>
                                     </button>
                                 </div>
                             )}
-
                         </div>
 
                         {/* ── RIGHT: Features card ── */}
                         <div
-                            className={`why-card-right relative rounded-2xl p-8 lg:p-10 flex flex-col justify-center ${mounted ? "opacity-100" : "opacity-0"}`}
+                            className={`why-card-right relative rounded-2xl p-6 sm:p-8 lg:p-12 flex flex-col justify-center ${mounted ? "opacity-100" : "opacity-0"}`}
                             style={{
                                 border: "1px solid rgba(255,255,255,0.07)",
                                 background: "rgba(14,18,12,0.85)",
@@ -218,7 +209,7 @@ export default function WhyNutriLoop() {
 
                             {/* Label */}
                             <p
-                                className="text-[#00C950] text-sm font-semibold tracking-wide uppercase mb-4"
+                                className="text-[#00C950] text-xs sm:text-sm font-semibold tracking-wide uppercase mb-3 sm:mb-4"
                                 style={{ fontFamily: "sans-serif" }}
                             >
                                 WHY NUTRILOOP?
@@ -226,9 +217,9 @@ export default function WhyNutriLoop() {
 
                             {/* Heading */}
                             <h2
-                                className="text-white font-semibold tracking-wide leading-tight mb-8"
+                                className="text-white font-semibold tracking-wide leading-tight mb-6 sm:mb-8"
                                 style={{
-                                    fontSize: "clamp(1.9rem, 3.5vw, 2.75rem)",
+                                    fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
                                     letterSpacing: "-0.02em",
                                 }}
                             >
@@ -237,16 +228,16 @@ export default function WhyNutriLoop() {
                             </h2>
 
                             {/* Feature rows */}
-                            <div className="flex flex-col gap-6">
+                            <div className="flex flex-col gap-5 sm:gap-6">
                                 {features.map((f, i) => (
                                     <div
                                         key={i}
-                                        className={`feature-row flex items-start gap-4 ${mounted ? "visible" : ""}`}
+                                        className={`feature-row flex items-start gap-3 sm:gap-4 ${mounted ? "visible" : ""}`}
                                         style={{ animationDelay: `${0.25 + i * 0.12}s` }}
                                     >
                                         {/* Icon box */}
                                         <div
-                                            className="feat-icon-wrap shrink-0 flex items-center justify-center w-11 h-11 rounded-xl text-[#00C950] transition-all duration-300"
+                                            className="feat-icon-wrap shrink-0 flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 rounded-xl text-[#00C950] transition-all duration-300"
                                             style={{
                                                 background: "rgba(0,201,80,0.07)",
                                                 border: "1px solid rgba(0,201,80,0.2)",
@@ -258,25 +249,25 @@ export default function WhyNutriLoop() {
                                         {/* Text */}
                                         <div>
                                             <h4
-                                                className="text-white tracking-wide font-semibold text-[15px] mb-0.5"
+                                                className="text-white tracking-wide font-semibold text-[14px] sm:text-[15px] mb-0.5"
                                             >
                                                 {f.label}
                                             </h4>
-                                            <p className="text-white/90 tracking-wide text-sm leading-relaxed">
+                                            <p className="text-white/90 tracking-wide text-xs sm:text-sm">
                                                 {f.desc}
                                             </p>
                                         </div>
 
                                         {/* Subtle right accent */}
-                                        <div className="ml-auto shrink-0 w-1 self-stretch rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                                        <div className="hidden sm:block ml-auto shrink-0 w-1 self-stretch rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
                                             style={{ background: "linear-gradient(to bottom, #00C950, transparent)" }} />
                                     </div>
                                 ))}
                             </div>
 
                             {/* Bottom separator + CTA */}
-                            <div className="mt-9 pt-7 border-t border-white/5 flex items-center justify-between gap-4">
-                                <p className="text-gray-300 tracking-wide text-xs max-w-50 leading-relaxed">
+                            <div className="mt-8 sm:mt-9 pt-6 sm:pt-7 border-t border-white/5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                                <p className="text-gray-300 tracking-wide text-xs max-w-50">
                                     Engineered for daily sustainability without compromise.
                                 </p>
                                 <button
