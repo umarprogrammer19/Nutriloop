@@ -76,13 +76,14 @@ export default function Hero() {
                             variants={fadeUp}
                             transition={{ duration: 0.9 }}
                             className="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                            <motion.button
+                            <motion.a
+                                href="#why-nutriloop"
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="w-full sm:w-auto rounded-xl bg-[#00C950] px-8 py-3 font-semibold text-black transition hover:bg-green-400"
+                                className="w-full sm:w-auto rounded-xl bg-[#00C950] px-8 py-3 font-semibold text-black transition hover:bg-green-400 text-center"
                             >
                                 Watch Demo
-                            </motion.button>
+                            </motion.a>
                         </motion.div>
 
                         {/* Stats */}
