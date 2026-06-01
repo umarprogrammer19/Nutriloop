@@ -240,37 +240,6 @@ export default function HowItWorks() {
                         ))}
                     </div>
                 </div>
-
-                {/* CTA Button */}
-                <div
-                    className="flex justify-center mt-12"
-                    style={{
-                        opacity: visible ? 1 : 0,
-                        transform: visible ? "translateY(0)" : "translateY(20px)",
-                        transition: "opacity 0.7s ease 0.65s, transform 0.7s ease 0.65s",
-                    }}
-                >
-                    <button
-                        className="group relative items-center gap-3 border border-white/40 text-white text-sm font-medium px-7 py-3 rounded-lg overflow-hidden transition-all duration-300 hover:border-[#00C950]/60 lg:flex hidden"
-                        style={{
-                            background: "rgba(255,255,255,0.03)",
-                            backdropFilter: "blur(6px)",
-                        }}
-                    >
-                        <span className="relative z-10 transition-colors duration-300 group-hover:text-[#00C950]">
-                            Explore Full Process
-                        </span>
-
-                        {/* hover shimmer */}
-                        <span
-                            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-                            style={{
-                                background:
-                                    "radial-gradient(ellipse 80% 80% at 50% 50%, rgba(0,201,80,0.07) 0%, transparent 70%)",
-                            }}
-                        />
-                    </button>
-                </div>
             </div>
 
             {/* Bottom divider */}

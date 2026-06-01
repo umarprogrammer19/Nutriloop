@@ -83,14 +83,6 @@ export default function Hero() {
                             >
                                 Watch Demo
                             </motion.button>
-
-                            <motion.button
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="w-full sm:w-auto rounded-xl border border-white/20 px-8 py-3 text-white transition hover:border-[#00C950] hover:text-[#00C950] "
-                            >
-                                Explore Technology
-                            </motion.button>
                         </motion.div>
 
                         {/* Stats */}

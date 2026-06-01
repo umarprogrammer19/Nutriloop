@@ -134,6 +134,7 @@ export default function WhyNutriLoop() {
       `}</style>
 
             <section
+                id="why-nutriloop"
                 ref={sectionRef}
                 className="relative bg-[#070a05] py-16 md:py-24 overflow-hidden bg-[url('/why-bg.png')] bg-cover bg-center bg-no-repeat"
             >
@@ -263,22 +264,6 @@ export default function WhyNutriLoop() {
                                             style={{ background: "linear-gradient(to bottom, #00C950, transparent)" }} />
                                     </div>
                                 ))}
-                            </div>
-
-                            {/* Bottom separator + CTA */}
-                            <div className="mt-8 sm:mt-9 pt-6 sm:pt-7 border-t border-white/5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                                <p className="text-gray-300 tracking-wide text-xs max-w-50">
-                                    Engineered for daily sustainability without compromise.
-                                </p>
-                                <button
-                                    className="shrink-0 flex items-center gap-2 text-[#00C950] text-sm font-medium transition-all duration-300 hover:gap-3"
-                                    style={{ fontFamily: "'Syne', sans-serif" }}
-                                >
-                                    Learn more
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                        <path d="M5 12h14M12 5l7 7-7 7" />
-                                    </svg>
-                                </button>
                             </div>
                         </div>
 
