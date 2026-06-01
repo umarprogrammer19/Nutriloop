@@ -5,6 +5,7 @@ import Footer from "@/components/layout/footer";
 import Navbar from "@/components/layout/navbar";
 import WhyNutriLoop from "@/components/why-nutriloop";
 import HowItWorks from "@/components/work";
+import Chatbot from "@/components/chatbot";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <ImpactAndTestimonials />
       <FAQ />
       <Footer />
+      <Chatbot />
     </>
   );
 }
