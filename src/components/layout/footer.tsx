@@ -269,12 +269,14 @@ export default function Footer() {
                             © {new Date().getFullYear()} NutriLoop. All rights reserved.
                         </p>
 
-                        <div className="flex items-center justify-center gap-1.5 text-sm text-white">
-                            Developed By <span className="text-[rgba(0,201,80)] font-bold">Urooj Irfan </span> Designed with
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="rgba(0,201,80,0.7)" style={{ margin: "0 1px" }}>
+                        <div className="flex flex-wrap items-center justify-center gap-x-1.5 gap-y-1 text-sm text-white text-center leading-relaxed">
+                            <span>Developed By</span>
+                            <span className="text-[#00C950] font-bold">Urooj Irfan</span>
+                            <span>Designed with</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="rgba(0,201,80,0.7)" className="flex-shrink-0">
                                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
                             </svg>
-                            for a sustainable future.
+                            <span>for a sustainable future.</span>
                         </div>
                     </div>
                 </div>
