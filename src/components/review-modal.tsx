@@ -6,7 +6,7 @@ interface Props {
   onClose: () => void;
 }
 
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyf1rqjS3EoGKsNjbGXZ9mDWKdTM6HUFfHLjWgJBQhxvHznbmoODTYAytlWD6DYzVkpiw/exec";
+const APPS_SCRIPT_URL = process.env.NEXT_PUBLIC_APPS_SCRIPT_URL!;
 
 export default function ReviewModal({ onClose }: Props) {
   const [name, setName] = useState("");
